@@ -1,0 +1,65 @@
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	background-image:url(button/bg.png);
+}
+#BOX {
+	width:700px;
+	margin:0 auto;
+	margin-top:100px;
+}
+#BOX h1 {
+	width:508px;
+	height:158px;
+	background-image:url(button/flycan-logo.png);
+	margin:0 auto;
+	text-indent:-9999px;
+}
+#BOX ul {
+	list-style:none;
+	width:698px;
+	height:355px;
+	margin:0 auto;
+	background:url(button/holehole.png) no-repeat;
+	margin-top:30px;
+}
+#BOX li {
+	display:block;
+	width:129px;
+	height:355px;
+	float:left;
+	margin-left:38px;
+	position:relative;
+	overflow:hidden;
+	margin-top:3px;
+}
+#BOX li a {
+	display:block;
+	width:129px;
+	height:355px;
+	text-indent:-9999px;
+	position:absolute;
+	top:-250px;
+}
+#BOX li#AA a {
+	background-image:url(button/tab-1.png);
+}
+#BOX li#BB a {
+	background-image:url(button/tab-2.png);
+}
+#BOX li#CC a {
+	background-image:url(button/tab-3.png);
+}
+#BOX li#DD a {
+	background-image:url(button/tab-4.png);
+}
+#main{
+	width:698px;
+	border:#F00 1px solid;
+	color:#FFF;
+	position:absolute;
+	top:450px;
+	left:370px;
+}

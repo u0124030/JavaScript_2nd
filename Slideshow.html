@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>照片幻燈秀</title>
+    <link rel="stylesheet" href="themes/default/default.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="themes/light/light.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="themes/dark/dark.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="themes/bar/bar.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+	<link href="layout.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<div id="BOX">
+<h1>Picture Show - NO.4</h1>
+<ul>
+  <li id="AA"><a href="page1.php">UpLoad Picture</a></li>
+  <li id="BB"><a href="page2.php">Picture Edit</a></li>
+  <li id="CC"><a href="Slideshow.html">SlideShow</a></li>
+  <li id="DD"><a href="index.html">Index</a></li>
+</ul>
+</div>
+
+<div  id="main">
+	<form name="form1" id="form1" >
+		<h3>幻燈片外框設定</h3><br/>
+		<label><input type="radio" name="two" value="light" checked>light&nbsp;&nbsp;</label>
+		<label><input type="radio" name="two" value="default">default&nbsp;&nbsp;</label>
+		<label><input type="radio" name="two" value="dark">dark&nbsp;&nbsp;</label>
+		<label><input type="radio" name="two" value="bar">bar&nbsp;&nbsp;</label>
+		<label><input type="radio" name="two" value="nivo-slider">nivo-slide&nbsp;&nbsp;</label>
+		<input type="button" value="套用" onclick="changetheme()"> 
+	</form>	
+	<div id="wrapper">
+	  
+		
+		<div class="slider-wrapper theme-light" id="theme">
+			<div id="slider" class="nivoSlider">
+
+			</div>
+			<div id="htmlcaption" class="nivo-html-caption">
+				
+			</div>
+		</div>
+
+	</div>
+	<iframe marginwidth='0' marginheight='0' src='http://vlog.xuite.net/embed/TFdxZ1JILTM5NjcxMDEuZmx2?v=1.0.1&ar=1&as=1' scrolling='no' frameborder='0' width='0' height='0'></iframe>
+
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.0/jquery-ui.min.js"></script>
+<script src="flycan-menu.js"></script>
+<script type="text/javascript" src="scripts/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript">
+
+	function changetheme(){
+	  var form_name = document.getElementById('form1');
+	  var theme =document.getElementById("theme");
+	  //當只有一個選項的時候 可以得到value 也就不會等於undefined了
+	  if (form_name.two.value != undefined)
+	  {
+		if (form_name.two.checked)
+		{
+		  alert(form_name.two.value);
+		}
+	  }
+	  else //當有兩個以上的選項時 要用迴圈取得checked的選項
+	  {
+		for (var i=0; i<form_name.two.length; i++)
+		{
+		  if (form_name.two[i].checked)
+		  {
+			theme.className="slider-wrapper theme-"+form_name.two[i].value;
+			//alert(form_name.two[i].value);
+			break;
+		  }
+		}
+	  }
+	}
+
+	
+	function image(path,times) { 
+		var img = document.createElement("IMG");
+		img.title=times;
+		img.src = "image/" + path;
+		
+		
+		document.getElementById('slider').appendChild(img);
+	}
+
+	window.onload = function(){
+		//var msg=document.getElementById("wow");
+		
+		$.get('photo.txt', function(data) {
+			var temp=data.toString();
+			var filename=temp.split("\r\n");
+			
+			//msg.innerHTML=data;
+			//var output=document.getElementById("slider");
+			var times=0;
+			for(var i=0;i<filename.length;i++){
+				if (filename[i]!="" ){
+					if (filename[i]!="default"){
+						times++;
+						image(filename[i],times);}}
+			}
+			
+			$('#slider').nivoSlider({pauseOnHover: true, pauseTime: 3000,effect:'random',animSpeed: 1000});
+			
+		})
+	}
+</script>
+
+</body>
+</html>
